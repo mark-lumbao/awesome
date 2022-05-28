@@ -298,6 +298,9 @@ globalkeys = gears.table.join(
 	end, { description = "go back", group = "client" }),
 
 	-- Standard program
+	awful.key({}, "Print", function()
+		awful.spawn("flameshot gui")
+	end, { description = "Screenshot", group = "launcher" }),
 	awful.key({ modkey }, "b", function()
 		awful.spawn(browser)
 	end, { description = "Open a browser", group = "browser" }),
@@ -358,8 +361,31 @@ globalkeys = gears.table.join(
 	end, { description = "lua execute prompt", group = "awesome" }),
 	-- Menubar
 	awful.key({ modkey }, "p", function()
-		menubar.show()
-	end, { description = "show the menubar", group = "launcher" })
+		awful.spawn("dmenu_run -nf '#fbf1c7' -sf '#282828' -sb '#98971a' -fn 'Hasklug Nerd Font:size=10'")
+	end, { description = "show the menubar", group = "launcher" }),
+	-- Backlit
+	awful.key({ modkey }, "F1", function()
+		awful.spawn("brightnessctl s 1%")
+	end, { description = "Set to minimum brightness", group = "backlit" }),
+	awful.key({ modkey }, "F2", function()
+		awful.spawn("brightnessctl s 10%-")
+	end, { description = "Decrement brightness by 10%", group = "backlit" }),
+	awful.key({ modkey }, "F3", function()
+		awful.spawn("brightnessctl s 10%+")
+	end, { description = "Increment brightness by 10%", group = "backlit" }),
+	awful.key({ modkey }, "F4", function()
+		awful.spawn("bash -c ~/.config/mybin/dm_msi_opt")
+	end, { description = "Set MSI keyboard backlit color and mode", group = "backlit" }),
+	-- Audio
+	awful.key({}, "XF86AudioMute", function()
+		awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
+	end, { description = "Mute audio", group = "volume" }),
+	awful.key({}, "XF86AudioLowerVolume", function()
+		awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%")
+	end, { description = "Decrement volume by 10%", group = "volume" }),
+	awful.key({}, "XF86AudioRaiseVolume", function()
+		awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%")
+	end, { description = "Increment volume by 10%", group = "volume" })
 )
 
 clientkeys = gears.table.join(
