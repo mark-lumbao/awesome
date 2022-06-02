@@ -11,7 +11,7 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font = "Hasklug Nerd Font 8"
+theme.font = "Hasklug Nerd Font 9"
 
 theme.bg_normal = "#282828"
 theme.bg_focus = "#d65d0e"
@@ -24,14 +24,14 @@ theme.fg_focus = "#ffffff"
 theme.fg_urgent = "#ffffff"
 theme.fg_minimize = "#ffffff"
 
-theme.useless_gap = dpi(2)
-theme.border_width = dpi(3)
+theme.useless_gap = dpi(0)
+theme.border_width = dpi(1)
 theme.border_normal = "#282828"
-theme.border_focus = "#b8bb26"
+theme.border_focus = "#83a598"
 theme.border_marked = "#91231c"
 
 theme.titlebar_bg_focus = "#79740e"
-theme.tasklist_bg_focus = "#79740e"
+theme.tasklist_bg_focus = "#504945"
 
 -- There are other variable sets
 -- overriding the default one when

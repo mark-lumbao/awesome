@@ -54,42 +54,31 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
-browser = "brave"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
+local terminal = "alacritty"
+local browser = "brave"
+local editor = os.getenv("EDITOR") or "nvim"
+local editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+local modkey = "Mod4"
+local alt = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
 	awful.layout.suit.tile,
-	awful.layout.suit.tile.left,
-	awful.layout.suit.tile.bottom,
-	awful.layout.suit.tile.top,
 	awful.layout.suit.floating,
-	awful.layout.suit.fair,
-	awful.layout.suit.fair.horizontal,
-	awful.layout.suit.spiral,
-	awful.layout.suit.spiral.dwindle,
-	awful.layout.suit.max,
 	awful.layout.suit.max.fullscreen,
 	awful.layout.suit.magnifier,
-	awful.layout.suit.corner.nw,
-	-- awful.layout.suit.corner.ne,
-	-- awful.layout.suit.corner.sw,
-	-- awful.layout.suit.corner.se,
 }
 -- }}}
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
+local myawesomemenu = {
 	{
 		"hotkeys",
 		function()
@@ -107,25 +96,25 @@ myawesomemenu = {
 	},
 }
 
-mymainmenu = awful.menu({
+local mymainmenu = awful.menu({
 	items = {
 		{ "awesome", myawesomemenu, beautiful.awesome_icon },
 		{ "open terminal", terminal },
 	},
 })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
+local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+local mytextclock = wibox.widget.textclock("%a %b/%d/%Y %I:%M %p ")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -260,7 +249,7 @@ root.buttons(gears.table.join(
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = gears.table.join(
+local globalkeys = gears.table.join(
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 	awful.key({ modkey, "Control" }, "j", awful.tag.viewprev, { description = "view previous", group = "tag" }),
 	awful.key({ modkey, "Control" }, "k", awful.tag.viewnext, { description = "view next", group = "tag" }),
@@ -297,14 +286,30 @@ globalkeys = gears.table.join(
 		end
 	end, { description = "go back", group = "client" }),
 
+	-- Scratchpad
+	awful.key({ modkey, "Shift" }, "p", function()
+		awful.spawn("alacritty --class scratch -e pulsemixer")
+	end, { description = "Launch Pulsemixer", group = "scratchpad" }),
+	awful.key({ modkey, "Shift" }, "e", function()
+		awful.spawn("alacritty --class scratch -e ranger")
+	end, { description = "Launch Ranger", group = "scratchpad" }),
+	awful.key({ modkey, "Shift" }, "t", function()
+		awful.spawn("alacritty --class scratch -e htop")
+	end, { description = "Launch Htop", group = "scratchpad" }),
 	-- Standard program
+	awful.key({ alt }, "e", function()
+		awful.spawn("element-desktop")
+	end, { description = "Launch Element", group = "communication" }),
+	awful.key({ alt }, "s", function()
+		awful.spawn("slack")
+	end, { description = "Launch Slack", group = "communication" }),
 	awful.key({}, "Print", function()
 		awful.spawn("flameshot gui")
 	end, { description = "Screenshot", group = "launcher" }),
 	awful.key({ modkey }, "b", function()
 		awful.spawn(browser)
 	end, { description = "Open a browser", group = "browser" }),
-	awful.key({ modkey, "Shift" }, "b", function()
+	awful.key({ alt }, "b", function()
 		awful.spawn(browser .. " --incognito")
 	end, { description = "Open a private browser", group = "browser" }),
 	awful.key({ modkey }, "Return", function()
@@ -388,7 +393,7 @@ globalkeys = gears.table.join(
 	end, { description = "Increment volume by 10%", group = "volume" })
 )
 
-clientkeys = gears.table.join(
+local clientkeys = gears.table.join(
 	awful.key({ modkey }, "f", function(c)
 		c.fullscreen = not c.fullscreen
 		c:raise()
@@ -473,7 +478,7 @@ for i = 1, 9 do
 	)
 end
 
-clientbuttons = gears.table.join(
+local clientbuttons = gears.table.join(
 	awful.button({}, 1, function(c)
 		c:emit_signal("request::activate", "mouse_click", { raise = true })
 	end),
@@ -620,8 +625,8 @@ end)
 -- }}}
 
 -- Autorun programs
-autorun = true
-autorunApps = {
+local autorun = true
+local autorunApps = {
 	"nitrogen --restore",
 	"xfce4-power-manager &",
 	"pamac-tray &",
