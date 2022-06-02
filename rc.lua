@@ -114,7 +114,7 @@ local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-local mytextclock = wibox.widget.textclock("%a %b/%d/%Y %I:%M %p ")
+local mytextclock = wibox.widget.textclock(" %a %b/%d/%Y  %I:%M %p ")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -229,6 +229,11 @@ awful.screen.connect_for_each_screen(function(s)
 		s.mytasklist, -- Middle widget
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
+			wibox.widget.textbox(" ﯧ "),
+			awful.widget.watch("fish -c 'math (brightnessctl g) \\/ (brightnessctl m) \\* 100'", 2),
+			wibox.widget.textbox("  "),
+			awful.widget.watch("bash -c '~/.config/mybin/get-volume.sh'", 2),
+			wibox.widget.textbox("  "),
 			mykeyboardlayout,
 			mytextclock,
 			s.mylayoutbox,
