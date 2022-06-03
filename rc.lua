@@ -174,6 +174,21 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+-- Hide border for single clients
+-- Reference
+-- https://stackoverflow.com/questions/30324250/how-to-hide-borders-dynamically-from-windows-when-not-tiled-awesome-wm
+screen.connect_signal("arrange", function(s)
+	local max = s.selected_tag.name == "max"
+	local only_one = #s.tiled_clients == 1
+	for _, c in pairs(s.clients) do
+		if (max or only_one) and not c.floating or c.maximized then
+			c.border_width = 0
+		else
+			c.border_width = beautiful.border_width
+		end
+	end
+end)
+
 awful.screen.connect_for_each_screen(function(s)
 	-- Wallpaper
 	set_wallpaper(s)

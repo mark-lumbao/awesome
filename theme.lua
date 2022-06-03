@@ -1,5 +1,5 @@
 ---------------------------
--- Default awesome theme --
+-- Mark's Awesome Theme  --
 ---------------------------
 
 local theme_assets = require("beautiful.theme_assets")
@@ -11,6 +11,8 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
+theme.maximized_hide_border = true
+
 theme.font = "Hasklug Nerd Font 9"
 
 theme.bg_normal = "#282828"
@@ -18,20 +20,20 @@ theme.bg_focus = "#d65d0e"
 theme.bg_urgent = "#ff0000"
 theme.bg_minimize = "#444444"
 theme.bg_systray = "#689d6a"
+theme.titlebar_bg_focus = "#79740e"
+theme.tasklist_bg_focus = "#504945"
 
-theme.fg_normal = "#aaaaaa"
-theme.fg_focus = "#ffffff"
-theme.fg_urgent = "#ffffff"
-theme.fg_minimize = "#ffffff"
+theme.fg_normal = "#ebdbb2"
+theme.fg_focus = "#ebdbb2"
+theme.fg_urgent = "#ebdbb2"
+theme.fg_minimize = "#ebdbb2"
 
 theme.useless_gap = dpi(0)
-theme.border_width = dpi(1)
+theme.border_width = dpi(2)
+
 theme.border_normal = "#282828"
 theme.border_focus = "#83a598"
 theme.border_marked = "#91231c"
-
-theme.titlebar_bg_focus = "#79740e"
-theme.tasklist_bg_focus = "#504945"
 
 -- There are other variable sets
 -- overriding the default one when
