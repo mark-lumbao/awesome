@@ -305,39 +305,6 @@ local globalkeys = gears.table.join(
 			client.focus:raise()
 		end
 	end, { description = "go back", group = "client" }),
-
-	-- Scratchpad
-	awful.key({ modkey, "Shift" }, "p", function()
-		awful.spawn("alacritty --class scratch -e pulsemixer")
-	end, { description = "Launch Pulsemixer", group = "scratchpad" }),
-	awful.key({ modkey, "Shift" }, "e", function()
-		awful.spawn("alacritty --class scratch -e ranger")
-	end, { description = "Launch Ranger", group = "scratchpad" }),
-	awful.key({ modkey, "Shift" }, "t", function()
-		awful.spawn("alacritty --class scratch -e htop")
-	end, { description = "Launch Htop", group = "scratchpad" }),
-	-- Standard program
-	awful.key({ alt }, "e", function()
-		awful.spawn("element-desktop")
-	end, { description = "Launch Element", group = "communication" }),
-	awful.key({ alt }, "s", function()
-		awful.spawn("slack")
-	end, { description = "Launch Slack", group = "communication" }),
-	awful.key({}, "Print", function()
-		awful.spawn("flameshot gui")
-	end, { description = "Screenshot", group = "launcher" }),
-	awful.key({ modkey }, "b", function()
-		awful.spawn(browser)
-	end, { description = "Open a browser", group = "browser" }),
-	awful.key({ alt }, "b", function()
-		awful.spawn(browser .. " --incognito")
-	end, { description = "Open a private browser", group = "browser" }),
-	awful.key({ modkey }, "Return", function()
-		awful.spawn(terminal)
-	end, { description = "open a terminal", group = "launcher" }),
-	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
-	awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
-
 	awful.key({ modkey }, "l", function()
 		awful.tag.incmwfact(0.05)
 	end, { description = "increase master width factor", group = "layout" }),
@@ -362,7 +329,6 @@ local globalkeys = gears.table.join(
 	awful.key({ modkey, "Shift" }, "space", function()
 		awful.layout.inc(-1)
 	end, { description = "select previous", group = "layout" }),
-
 	awful.key({ modkey, "Control" }, "n", function()
 		local c = awful.client.restore()
 		-- Focus restored client
@@ -371,11 +337,43 @@ local globalkeys = gears.table.join(
 		end
 	end, { description = "restore minimized", group = "client" }),
 
+	-- Scratchpad
+	awful.key({ modkey, "Shift" }, "p", function()
+		awful.spawn("alacritty --class scratch -e pulsemixer")
+	end, { description = "Launch Pulsemixer", group = "scratchpad" }),
+	awful.key({ modkey, "Shift" }, "e", function()
+		awful.spawn("alacritty --class scratch -e ranger")
+	end, { description = "Launch Ranger", group = "scratchpad" }),
+	awful.key({ modkey, "Shift" }, "t", function()
+		awful.spawn("alacritty --class scratch -e htop")
+	end, { description = "Launch Htop", group = "scratchpad" }),
+
+	-- Standard program
+	awful.key({ alt }, "e", function()
+		awful.spawn("element-desktop")
+	end, { description = "Launch Element", group = "communication" }),
+	awful.key({ alt }, "s", function()
+		awful.spawn("slack")
+	end, { description = "Launch Slack", group = "communication" }),
+	awful.key({}, "Print", function()
+		awful.spawn("flameshot gui")
+	end, { description = "Screenshot", group = "launcher" }),
+	awful.key({ modkey }, "b", function()
+		awful.spawn(browser)
+	end, { description = "Open a browser", group = "browser" }),
+	awful.key({ alt }, "b", function()
+		awful.spawn(browser .. " --incognito")
+	end, { description = "Open a private browser", group = "browser" }),
+	awful.key({ modkey }, "Return", function()
+		awful.spawn(terminal)
+	end, { description = "open a terminal", group = "launcher" }),
+	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
+	awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
+
 	-- Prompt
 	awful.key({ modkey }, "r", function()
 		awful.screen.focused().mypromptbox:run()
 	end, { description = "run prompt", group = "launcher" }),
-
 	awful.key({ modkey }, "x", function()
 		awful.prompt.run({
 			prompt = "Run Lua code: ",
@@ -384,10 +382,12 @@ local globalkeys = gears.table.join(
 			history_path = awful.util.get_cache_dir() .. "/history_eval",
 		})
 	end, { description = "lua execute prompt", group = "awesome" }),
+
 	-- Menubar
 	awful.key({ modkey }, "p", function()
 		awful.spawn("dmenu_run -nf '#fbf1c7' -sf '#282828' -sb '#98971a' -fn 'Hasklug Nerd Font:size=10'")
 	end, { description = "show the menubar", group = "launcher" }),
+
 	-- Backlit
 	awful.key({ modkey }, "F1", function()
 		awful.spawn("brightnessctl s 1%")
@@ -401,6 +401,7 @@ local globalkeys = gears.table.join(
 	awful.key({ modkey }, "F4", function()
 		awful.spawn("bash -c ~/.config/mybin/dm_msi_opt")
 	end, { description = "Set MSI keyboard backlit color and mode", group = "backlit" }),
+
 	-- Audio
 	awful.key({}, "XF86AudioMute", function()
 		awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
