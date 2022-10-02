@@ -361,7 +361,7 @@ local globalkeys = gears.table.join(
 	awful.key({ modkey }, "b", function()
 		awful.spawn(browser)
 	end, { description = "Open a browser", group = "browser" }),
-	awful.key({ alt }, "b", function()
+	awful.key({ modkey, alt }, "b", function()
 		awful.spawn(browser .. " --incognito")
 	end, { description = "Open a private browser", group = "browser" }),
 	awful.key({ modkey }, "Return", function()
