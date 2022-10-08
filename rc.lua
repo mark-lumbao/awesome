@@ -580,6 +580,12 @@ awful.rules.rules = {
 		properties = { floating = true },
 	},
 
+	-- Scratchpad
+	{
+		rule = { instance = "scratch" },
+		properties = { floating = true, placement = awful.placement.centered },
+	},
+
 	-- Add titlebars to normal clients and dialogs
 	{ rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = false } },
 
