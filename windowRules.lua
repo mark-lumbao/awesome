@@ -56,7 +56,7 @@ return {
 	-- Scratchpad
 	{
 		rule = { instance = "scratch" },
-		properties = { floating = true, placement = awful.placement.centered },
+		properties = { floating = true, sticky = true, placement = awful.placement.centered },
 	},
 
 	-- Add titlebars to normal clients and dialogs

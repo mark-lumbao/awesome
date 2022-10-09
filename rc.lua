@@ -294,7 +294,7 @@ root.buttons(require("buttonMaps").mouseButtons)
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = require("awfulRules")
+awful.rules.rules = require("windowRules")
 -- }}}
 
 -- {{{ Signals
