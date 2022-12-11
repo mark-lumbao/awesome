@@ -56,8 +56,8 @@ return {
 	),
 	globalkeys = gears.table.join(
 		awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
-		awful.key({ modkey, "Control" }, "j", awful.tag.viewprev, { description = "view previous", group = "tag" }),
-		awful.key({ modkey, "Control" }, "k", awful.tag.viewnext, { description = "view next", group = "tag" }),
+		awful.key({ modkey, alt }, "j", awful.tag.viewprev, { description = "view previous", group = "tag" }),
+		awful.key({ modkey, alt }, "k", awful.tag.viewnext, { description = "view next", group = "tag" }),
 		awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
 
 		awful.key({ modkey }, "j", function()
@@ -77,10 +77,10 @@ return {
 		awful.key({ modkey, "Shift" }, "k", function()
 			awful.client.swap.byidx(-1)
 		end, { description = "swap with previous client by index", group = "client" }),
-		awful.key({ modkey, alt }, "j", function()
+		awful.key({ modkey, "Control" }, "j", function()
 			awful.screen.focus_relative(1)
 		end, { description = "focus the next screen", group = "screen" }),
-		awful.key({ modkey, alt }, "k", function()
+		awful.key({ modkey, "Control" }, "k", function()
 			awful.screen.focus_relative(-1)
 		end, { description = "focus the previous screen", group = "screen" }),
 		awful.key(
