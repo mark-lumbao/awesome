@@ -233,6 +233,24 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
+--[[
+Move target client to a different tag.
+Moves focus as well if changeFocus property is set to true.
+--]]
+local function moveClient(client, i, changeFocus)
+	return function()
+		if client.focus then
+			local tag = client.focus.screen.tags[i]
+			if tag then
+				client.focus:move_to_tag(tag)
+				if changeFocus then
+					tag:view_only()
+				end
+			end
+		end
+	end
+end
+
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
@@ -256,24 +274,19 @@ for i = 1, 9 do
 			end
 		end, { description = "toggle tag #" .. i, group = "tag" }),
 		-- Move client and focus to tag.
-		awful.key({ modkey, "Shift" }, "#" .. i + 9, function()
-			if client.focus then
-				local tag = client.focus.screen.tags[i]
-				if tag then
-					client.focus:move_to_tag(tag)
-					tag:view_only()
-				end
-			end
-		end, { description = "move focused client and focus to tag #" .. i, group = "tag" }),
+		awful.key(
+			{ modkey, "Shift" },
+			"#" .. i + 9,
+			moveClient(client, i, true),
+			{ description = "move focused client and focus to tag #" .. i, group = "tag" }
+		),
 		-- Move client to tag.
-		awful.key({ alt, "Shift" }, "#" .. i + 9, function()
-			if client.focus then
-				local tag = client.focus.screen.tags[i]
-				if tag then
-					client.focus:move_to_tag(tag)
-				end
-			end
-		end, { description = "move focused client to tag #" .. i, group = "tag" }),
+		awful.key(
+			{ alt, "Shift" },
+			"#" .. i + 9,
+			moveClient(client, i, false),
+			{ description = "move focused client to tag #" .. i, group = "tag" }
+		),
 		-- Toggle tag on focused client.
 		awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9, function()
 			if client.focus then
