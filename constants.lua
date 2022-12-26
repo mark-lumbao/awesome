@@ -20,13 +20,12 @@ return {
 	alt = alt,
 	autorun = true,
 	autorunApps = {
-		"nitrogen --restore",
 		"xfce4-power-manager &",
 		"pamac-tray &",
 		"killall pasystray",
 		"pasystray &",
 		"blueberry-tray &",
 		"nm-applet &",
-		"picom --experimental-backends --corner-radius 0 -o 0.5 -b",
+		"picom -b",
 	},
 }
