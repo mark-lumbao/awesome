@@ -26,6 +26,8 @@ return {
 		"pasystray &",
 		"blueberry-tray &",
 		"nm-applet &",
+		"killall volumeicon",
+		"volumeicon",
 		"picom -b",
 	},
 }
