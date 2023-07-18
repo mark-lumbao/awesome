@@ -11,6 +11,8 @@ local modkey = constants.modkey
 local alt = constants.alt
 local terminal = constants.terminal
 local browser = constants.browser
+local keyboard_travel = "30"
+local keyboard_travel_slow = "10"
 
 return {
 	clientkeys = gears.table.join(
@@ -201,6 +203,41 @@ return {
 		end, { description = "Decrement volume by 10%", group = "volume" }),
 		awful.key({}, "XF86AudioRaiseVolume", function()
 			awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%")
-		end, { description = "Increment volume by 10%", group = "volume" })
+		end, { description = "Increment volume by 10%", group = "volume" }),
+
+    -- Mouse to Keyboard remaps
+		awful.key({ alt }, "Up", function()
+      awful.spawn("xdotool mousemove_relative 0 -" .. keyboard_travel_slow)
+    end, { description = "move mouse up", group = "mouse" }),
+		awful.key({ alt }, "Down", function()
+      awful.spawn("xdotool mousemove_relative 0 " .. keyboard_travel_slow)
+    end, { description = "move mouse down", group = "mouse" }),
+		awful.key({ alt }, "Left", function()
+      awful.spawn("xdotool mousemove_relative -- -" .. keyboard_travel_slow .. " 0")
+    end, { description = "move mouse left", group = "mouse" }),
+		awful.key({ alt }, "Right", function()
+      awful.spawn("xdotool mousemove_relative " .. keyboard_travel_slow .. " 0")
+    end, { description = "move mouse right", group = "mouse" }),
+		awful.key({ modkey }, "Up", function()
+      awful.spawn("xdotool mousemove_relative 0 -" .. keyboard_travel)
+    end, { description = "move mouse up", group = "mouse" }),
+		awful.key({ modkey }, "Down", function()
+      awful.spawn("xdotool mousemove_relative 0 " .. keyboard_travel)
+    end, { description = "move mouse down", group = "mouse" }),
+		awful.key({ modkey }, "Left", function()
+      awful.spawn("xdotool mousemove_relative -- -" .. keyboard_travel .. " 0")
+    end, { description = "move mouse left", group = "mouse" }),
+		awful.key({ modkey }, "Right", function()
+      awful.spawn("xdotool mousemove_relative " .. keyboard_travel .. " 0")
+    end, { description = "move mouse right", group = "mouse" }),
+
+    -- NOTE: xdotool doesn't work well without delay option,
+    --       and delay option can only be used with repeat.
+		awful.key({ alt }, "Return", function()
+      awful.spawn("xdotool click --repeat=2 --delay=200 1")
+    end, { description = "left mouse click", group = "mouse" }),
+		awful.key({ alt, "Shift" }, "Return", function()
+      awful.spawn("xdotool click --repeat=2 --delay=200 3")
+    end, { description = "right mouse click", group = "mouse" })
 	),
 }
