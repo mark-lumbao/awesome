@@ -14,7 +14,7 @@ local theme = {}
 
 theme.maximized_hide_border = true
 
-theme.font = "Hasklug Nerd Font 9"
+theme.font = "FiraCode Nerd Font 9"
 
 theme.bg_normal = "#282828"
 theme.bg_focus = "#d65d0e"
