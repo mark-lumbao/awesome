@@ -11,30 +11,31 @@ local themes_path = gfs.get_themes_dir()
 local cnfgdir = gfs.get_configuration_dir()
 
 local theme = {}
+local main_accent = "#f2e5bc"
 
 theme.maximized_hide_border = true
 
 theme.font = "FiraCode Nerd Font 9"
 
 theme.bg_normal = "#282828"
-theme.bg_focus = "#d65d0e"
-theme.bg_urgent = "#ff0000"
+theme.bg_focus = main_accent
+theme.bg_urgent = "#cc241d"
 theme.bg_minimize = "#504945"
-theme.bg_systray = "#689d6a"
+theme.bg_systray = "#928374"
 theme.titlebar_bg_focus = "#79740e"
-theme.tasklist_bg_focus = "#83a598"
+theme.tasklist_bg_focus = main_accent
 
 theme.fg_normal = "#ebdbb2"
 theme.fg_focus = "#282828"
 theme.fg_urgent = "#ebdbb2"
 theme.fg_minimize = "#ebdbb2"
 
-theme.useless_gap = dpi(2)
+theme.useless_gap = dpi(3)
 theme.gap_single_client = false
-theme.border_width = dpi(2)
+theme.border_width = dpi(3)
 
 theme.border_normal = "#282828"
-theme.border_focus = "#83a598"
+theme.border_focus = main_accent
 theme.border_marked = "#91231c"
 
 -- There are other variable sets
