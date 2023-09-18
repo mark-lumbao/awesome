@@ -11,7 +11,7 @@ local themes_path = gfs.get_themes_dir()
 local cnfgdir = gfs.get_configuration_dir()
 
 local theme = {}
-local main_accent = "#458588"
+local main_accent = "#83a598"
 
 theme.maximized_hide_border = true
 
