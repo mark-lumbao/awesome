@@ -54,7 +54,10 @@ return {
 		awful.key({ modkey, "Shift" }, "m", function(c)
 			c.maximized_horizontal = not c.maximized_horizontal
 			c:raise()
-		end, { description = "(un)maximize horizontally", group = "client" })
+		end, { description = "(un)maximize horizontally", group = "client" }),
+		awful.button({ modkey }, "1", function(c)
+      awful.mouse.client.move(c)
+		end, { description = "move floating window", group = "mouse" })
 	),
 	globalkeys = gears.table.join(
 		awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
